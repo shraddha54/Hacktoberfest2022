@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+int t;
+cin>>t;
+while(t--)
+{
+int n,cap,ele,val;
+float value=0;
+cin>>n>>cap;
+vector<pair<float,pair<int,int>>>v;
+for(int i=0;i<n;i++) {cin>>val>>ele;
+float ing = float(val)/ele;
+v.push_back(make_pair(ing,(make_pair(val,ele))));
+}
+sort(v.begin(),v.end());
+for(auto i=v.end()-1;i>=v.begin();i--)
+{
+if((*i).second.second<=cap)
+{
+value = value + (((*i).first) * ((*i).second.second));
+cap = cap - (*i).second.second;
+}
+else
+{
+if((*i).second.second>cap)
+(*i).second.second=cap;
+value = value + (((*i).first) * ((*i).second.second));
+cap = cap - (*i).second.second;
+}
+}
+cout << fixed << setprecision(2) <<value<<"\n"; }
+return 0;}
+
